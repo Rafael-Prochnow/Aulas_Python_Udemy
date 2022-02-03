@@ -40,6 +40,36 @@ print(f'Senha User 1: {user1._Usuario__senha}')  # Acesso de forma errada de um 
 print(f'Senha User 2: {user2._Usuario__senha}')  # Acesso de forma errada de um atributo de classe
 
 
+nome = input('informe o nome: ')
+sobrenome = input('informe o sobrenome: ')
+email = input('informe o email: ')
+senha = input('informe o senha: ')
+confirma_senha = input('Conferir a senha: ')
+
+if senha == confirma_senha:
+    user = Usuario(nome, sobrenome, email, senha)
+else:
+    print('Senha não confere...')
+    exit(42)
+
+print('Usuário criado com sucesso')
+
+senha = input('Informe a senha para acessso: ')
+
+if user.checa_senha(senha):
+    print('acesso permitido')
+else:
+    print('Acesso negado')
+
+print(f"Senha User Criptografada: {user._Usuario__senha}")
+
+# Métodos de classe em Python são conhecidos como métodos estáticos em outras linguagens
+
+# Métodos de Classes
+user = Usuario('RAFAEL', 'andreolli', 'rafaprochnow@gmail.com', '12345')
+
+Usuario.conta_usuarios()  # Forma Correta
+user.conta_usuarios()  # Possível, mas incorreto
 """
 from passlib.hash import pbkdf2_sha256 as cryp
 
@@ -82,11 +112,25 @@ class Produto:
 
 class Usuario:
 
+    contador = 0
+
+    @classmethod  # No método de classe nós não temos acesso a instância do objeto
+    def conta_usuarios(cls):
+        print(f'Temos {cls.contador} usuário(s) no sistema')
+
+    # Utilizando outro método estático. Não temos acesso as intânicas e nem a classe do objeto
+    @staticmethod
+    def definicao():
+        return 'UASLKDJF'
+
     def __init__(self, nome, sobrenome, email, senha):
+        self.__id = Usuario.contador + 1
         self.__nome = nome
         self.__sobrenome = sobrenome
         self.__email = email
-        self.__senha = cryp.encrypt(senha, round=200000, salt_size=16)
+        self.__senha = cryp.hash(senha, rounds=200000, salt_size=16)
+        Usuario.contador = self.__id
+        print(f'Usuário criado: {self.__gera_usuario()}')
 
     def nome_completo(self):
         return f"{self.__nome} {self.__sobrenome}"
@@ -96,17 +140,19 @@ class Usuario:
             return True
         return False
 
+    def __gera_usuario(self):
+        return self.__email.split('@')[0]
 
-nome = input('informe o nome: ')
-sobrenome = input('informe o sobrenome: ')
-email = input('informe o email: ')
-senha = input('informe o senha: ')
-confirma_senha = input('Conferir a senha: ')
 
-if senha == confirma_senha:
-    user = Usuario(nome, sobrenome, email, senha)
-else:
-    print('Senha não confere...')
+# Métodos Estático
 
-senha = input('infrme a senha para acessso')
+print(Usuario.contador)
+
+print(Usuario.definicao())
+
+user = Usuario('RAFAEL', 'andreolli', 'rafaprochnow@gmail.com', '12345')
+
+print(Usuario.contador)
+
+print(Usuario.definicao())
 
