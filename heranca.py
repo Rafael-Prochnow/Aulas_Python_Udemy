@@ -134,7 +134,6 @@ class Funcionario(Pessoa):
         return f'Funcionário {self.__matricula} Nome: {self._Pessoa__nome}'
 
 
-
 cliente1 = Cliente('Rafael', 'Andreolli', '469.989.068-70', 12345)
 funcionario1 = Funcionario('Rogerio', 'Correia', '309.989.068-70', 1123)
 
