@@ -71,3 +71,4 @@ print(livro1)
 print(len(livro2))
 
 print(livro1 * 3)
+
