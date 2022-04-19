@@ -57,13 +57,46 @@ print(hoje)
 hoje_formatado = hoje.strftime('%d/%m/%Y')
 print(hoje_formatado)
 
-"""
-import datetime
 from textblob import TextBlob
 
+
 def formata_data(data):
-    return f"{data.day} de {TextBlob(data.strftime(''))}"
+    return f"{data.day} de {TextBlob(data.strftime('%B')).translator(to='pt-br')} de {data.year}"
 
 
+hoje = datetime.datetime.today()
+print(hoje)
 
+# Somente a Hora
+
+almoco = datetime.time(12, 30, 0)
+print(almoco)
+
+import timeit
+
+# Marcando tempo de execução do nosso código com timeit
+
+# Loop for
+tempo = timeit.timeit('"-".join(str(n) for n in range(100))', number=1000)
+print(tempo)
+
+# List Comphension
+tempo = timeit.timeit('"-".join([str(n) for n in range(100)])', number=1000)
+print(tempo)
+
+# Map
+tempo = timeit.timeit('"-".join(map(str, range(100)))', number=1000)
+print(tempo)
+"""
+import timeit, functools
+
+
+def teste(n):
+    soma = 0
+    for num in range(n * 200):
+        soma = soma + num ** num + 4
+    return soma
+
+
+print(timeit.timeit(functools.partial(teste, 2), number=1000))
 
