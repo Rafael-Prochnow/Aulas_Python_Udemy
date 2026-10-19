@@ -1,1 +1,81 @@
+# ALTERAÇÃO DA ARQUITETURA VISUAL DO PROJETO
+
+Quero modificar a proposta do sistema para trabalhar com duas interfaces visuais complementares e integradas.
+
+## Interface 1 — Fluxo lógico do consórcio
+
+Criar um mapa de processos interativo com blocos e conexões, contemplando vendas, jornada do consorciado, pagamentos, lances, assembleias, cancelamentos, reativações e contemplações.
+
+Essa interface deve utilizar nós conectados, ramificações, indicadores, animações de transição e navegação com zoom.
+
+O objetivo é compreender o comportamento das cotas e a formação da demanda futura por motocicletas.
+
+## Interface 2 — Mapa ilustrado da operação de motocicletas
+
+A segunda interface deve reproduzir o estilo visual da imagem de referência anexada, semelhante a um jogo de gerenciamento logístico em 2D.
+
+Não quero outro fluxograma convencional. Quero um mundo ilustrado visto de cima, com concessionárias, fábricas, depósitos, pequenas construções, motocicletas e caminhos conectando as unidades.
+
+### Aparência
+
+Utilizar como referência:
+
+* Mapa ilustrado com fundo em tons claros.
+* Pequenas construções representando unidades operacionais.
+* Concessionárias representadas por lojas.
+* Fábricas representadas por instalações industriais.
+* Conexões pontilhadas representando rotas logísticas.
+* Pequenos painéis flutuantes com ícones, números e setas indicando entradas e saídas de produtos.
+* Indicadores junto de cada unidade.
+* Movimentação animada de recursos entre as estruturas.
+* Navegação livre com zoom e arrastar.
+* Possibilidade de selecionar e examinar individualmente cada instalação.
+
+### Funcionamento
+
+Cada concessionária deve apresentar demanda por motocicletas, estoque disponível, estoque reservado, pedidos pendentes, veículos em transporte e entregas realizadas.
+
+As fábricas devem apresentar produção, disponibilidade, pedidos recebidos, alocações e expedições.
+
+As conexões entre unidades devem representar fluxos reais ou simulados de pedidos e motocicletas.
+
+Quando uma demanda surgir no consórcio e estiver efetivamente liberada para atendimento, ela deverá aparecer na concessionária correspondente.
+
+Se houver estoque disponível, o sistema deverá representar a reserva do bem e o processo de entrega.
+
+Se não houver estoque, deverá mostrar a demanda pendente e os possíveis processos de reposição ou transferência.
+
+A movimentação de pedidos e o deslocamento físico de motocicletas devem ter representações distintas.
+
+### Animações
+
+Implementar partículas, ícones ou pequenas motocicletas movimentando-se pelas rotas.
+
+A velocidade da animação poderá representar a passagem do tempo durante a reprodução histórica ou uma simulação acelerada.
+
+Permitir pausar, acelerar, retroceder e selecionar períodos.
+
+Mostrar alterações dos estoques e demandas ao longo do tempo.
+
+### Integração
+
+As duas interfaces devem compartilhar a mesma fonte de dados e os mesmos filtros de período, modelo e concessionária.
+
+Ao selecionar uma contemplação ou grupo de demandas na Interface 1, permitir navegar até as concessionárias impactadas na Interface 2.
+
+Ao selecionar uma demanda na Interface 2, permitir consultar a origem no processo do consórcio, respeitando as permissões de acesso.
+
+Criar uma navegação contínua entre fluxo de clientes e fluxo de motocicletas.
+
+### Tecnologias
+
+Priorizar Python para processamento, regras de negócio e simulações.
+
+Se a implementação for desktop e inteiramente em Python, avaliar Pygame e PySide6.
+
+Se for uma aplicação web, utilizar Python com FastAPI no back-end, React Flow para a Interface 1 e PixiJS para o mapa da Interface 2.
+
+Inicialmente, implementar um protótipo com dados fictícios, contendo cinco concessionárias, uma fábrica e três modelos de motocicletas.
+
+O resultado deve ser uma aplicação executável, com os dois mapas interativos e integrados, não apenas desenhos estáticos.
 
